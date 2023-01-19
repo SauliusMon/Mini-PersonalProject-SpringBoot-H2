@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <h1>Rooms:</h1>
+</head>
+
+<body>
+    <table style="border: 1px solid black" >
+        <h3>Room 1:</h3>
+        <td style="padding: 10px"> <em>Role:</em></td>
+        <td style="padding: 10px"><em>Name:</em></td>
+        <td style="padding: 10px"><em>Second name:</em></td>
+        <td style="padding: 10px"><em>Remove from room:</em></td>
+        <div th:if="${room1 != null}">
+            <tr th:each="person: ${room1}">
+                <td th:text="${person.role}" style="padding: 0px 10px"/>
+                <td th:text="${person.name}" style="padding: 0px 10px"/>
+                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+            </tr>
+        </div>
+    </table>
+
+    <table style="border: 1px solid black;">
+        <h3>Room 2:</h3>
+        <td style="padding: 10px"> <em>Role:</em></td>
+        <td style="padding: 10px"><em>Name:</em></td>
+        <td style="padding: 10px"><em>Second name:</em></td>
+        <td style="padding: 10px"><em>Remove from room::</em></td>
+        <div th:if="${room2 != null}">
+            <tr th:each="person: ${room2}">
+                <td th:text="${person.role}" style="padding: 0px 10px"/>
+                <td th:text="${person.name}" style="padding: 0px 10px"/>
+                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+            </tr>
+        </div>
+    </table>
+
+    <table style="border: 1px solid black">
+        <h3>Room 3:</h3>
+        <td style="padding: 10px"> <em>Role:</em></td>
+        <td style="padding: 10px"><em>Name:</em></td>
+        <td style="padding: 10px"><em>Second name:</em></td>
+        <td style="padding: 10px"><em>Remove from room::</em></td>
+        <div th:if="${room3 != null}">
+            <tr th:each="person: ${room3}">
+                <td th:text="${person.role}" style="padding: 0px 10px"/>
+                <td th:text="${person.name}" style="padding: 0px 10px"/>
+                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+            </tr>
+        </div>
+    </table>
+
+    <table style="border: 1px solid black">
+        <h3>Room 4:</h3>
+        <td style="padding: 10px"> <em>Role:</em></td>
+        <td style="padding: 10px"><em>Name:</em></td>
+        <td style="padding: 10px"><em>Second name:</em></td>
+        <td style="padding: 10px"><em>Remove from room::</em></td>
+        <div th:if="${room4 != null}">
+            <tr th:each="person: ${room4}">
+                <td th:text="${person.role}" style="padding: 0px 10px"/>
+                <td th:text="${person.name}" style="padding: 0px 10px"/>
+                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+            </tr>
+        </div>
+    </table>
+</body>
+
+
+
+
