@@ -5,11 +5,12 @@ import lt.techin.from.scratch.model.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DefaultRoomController {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public DefaultRoomController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -27,10 +28,15 @@ public class DefaultRoomController {
         return "mainHub";
     }
 
-    @PostMapping("adduser")
-    public String getLogout(@ModelAttribute Person person) {
-        System.out.println("asd" + person.getName() + person.getPassword());
+    @PostMapping("/add-person")
+    public String addUser(@ModelAttribute Person person) {
         userRepository.save(person);
         return "mainHub";
+    }
+
+    @PostMapping("/display-rooms")
+    public String displayRooms(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("attribute name", "Successful switch!");
+        return "redirect:rooms";
     }
 }

@@ -82,4 +82,16 @@ public class Person {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", password='" + password + '\'' +
+                ", room=" + room +
+                '}';
+    }
 }

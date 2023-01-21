@@ -14,13 +14,34 @@
         <td style="padding: 10px"><em>Remove from room:</em></td>
         <div th:if="${room1 != null}">
             <tr th:each="person: ${room1}">
-                <td th:text="${person.role}" style="padding: 0px 10px"/>
-                <td th:text="${person.name}" style="padding: 0px 10px"/>
-                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
-                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+                <form th:action="@{/remove-user-from-room}" method="post">
+                    <td th:text="${person.role}" style="padding: 0px 10px"/>
+                    <td th:text="${person.name}" style="padding: 0px 10px"/>
+                    <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                    <td style="padding: 0px 10px">
+                        <input type="hidden" name="personId" th:value="${person.Id}"/>
+                        <input type="submit" value="Remove"/>
+                    </td>
+                </form>
             </tr>
         </div>
+        <form action="/add-person-to-room1" method="post">
+            <table style="padding-top: 20px">
+                <tr>
+                    <td>
+                        <label for="personId1" style="font-weight: bold">Add to room 1 by ID:</label> <br>
+                        <input type="text" name="personId" id="personId1" /> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Add to room"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </table>
+
 
     <table style="border: 1px solid black;">
         <h3>Room 2:</h3>
@@ -30,12 +51,32 @@
         <td style="padding: 10px"><em>Remove from room::</em></td>
         <div th:if="${room2 != null}">
             <tr th:each="person: ${room2}">
-                <td th:text="${person.role}" style="padding: 0px 10px"/>
-                <td th:text="${person.name}" style="padding: 0px 10px"/>
-                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
-                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+                <form th:action="@{/remove-user-from-room}" method="post">
+                    <td th:text="${person.role}" style="padding: 0px 10px"/>
+                    <td th:text="${person.name}" style="padding: 0px 10px"/>
+                    <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                    <td style="padding: 0px 10px">
+                        <input type="hidden" name="personId" th:value="${person.Id}"/>
+                        <input type="submit" value="Remove"/>
+                    </td>
+                </form>
             </tr>
         </div>
+        <form action="/add-person-to-room2" method="post">
+            <table style="padding-top: 20px">
+                <tr>
+                    <td>
+                        <label for="personId2" style="font-weight: bold">Add to room 2 by ID:</label> <br>
+                        <input type="text" name="personId" id="personId2" /> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Add to room"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </table>
 
     <table style="border: 1px solid black">
@@ -46,12 +87,32 @@
         <td style="padding: 10px"><em>Remove from room::</em></td>
         <div th:if="${room3 != null}">
             <tr th:each="person: ${room3}">
-                <td th:text="${person.role}" style="padding: 0px 10px"/>
-                <td th:text="${person.name}" style="padding: 0px 10px"/>
-                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
-                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+                <form th:action="@{/remove-user-from-room}" method="post">
+                    <td th:text="${person.role}" style="padding: 0px 10px"/>
+                    <td th:text="${person.name}" style="padding: 0px 10px"/>
+                    <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                    <td style="padding: 0px 10px">
+                        <input type="hidden" name="personId" th:value="${person.Id}"/>
+                        <input type="submit" value="Remove"/>
+                    </td>
+                </form>
             </tr>
         </div>
+        <form action="/add-person-to-room3" method="post">
+            <table style="padding-top: 20px">
+                <tr>
+                    <td>
+                        <label for="personId3" style="font-weight: bold">Add to room 3 by ID:</label> <br>
+                        <input type="text" name="personId" id="personId3" /> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Add to room"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </table>
 
     <table style="border: 1px solid black">
@@ -62,13 +123,37 @@
         <td style="padding: 10px"><em>Remove from room::</em></td>
         <div th:if="${room4 != null}">
             <tr th:each="person: ${room4}">
-                <td th:text="${person.role}" style="padding: 0px 10px"/>
-                <td th:text="${person.name}" style="padding: 0px 10px"/>
-                <td th:text="${person.secondName}" style="padding: 0px 10px"/>
-                <td> <input type="submit" value="Remove" style="padding: 0px 10px"/></td>
+                <form th:action="@{/remove-user-from-room}" method="post">
+                    <td th:text="${person.role}" style="padding: 0px 10px"/>
+                    <td th:text="${person.name}" style="padding: 0px 10px"/>
+                    <td th:text="${person.secondName}" style="padding: 0px 10px"/>
+                    <td style="padding: 0px 10px">
+                        <input type="hidden" name="personId" th:value="${person.Id}"/>
+                        <input type="submit" value="Remove"/>
+                    </td>
+                </form>
             </tr>
         </div>
+        <form action="/add-person-to-room4" method="post">
+            <table style="padding-top: 20px">
+                <tr>
+                    <td>
+                        <label for="personId4" style="font-weight: bold">Add to room 4 by ID:</label> <br>
+                        <input type="text" name="personId" id="personId4" /> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Add to room"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </table>
+
+    <form action="display-mainhub" method="post" style="padding: 20px 0px">
+        <button onclick="display-mainhub" style="padding: 25px 20px; font-size: 1.5rem; font-weight: bold">Display MainHub</button>
+    </form>
 </body>
 
 
