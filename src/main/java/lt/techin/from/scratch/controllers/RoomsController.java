@@ -118,7 +118,7 @@ public class RoomsController {
         return "redirect:rooms";
     }
 
-    @PostMapping("display-mainhub")
+    @PostMapping("display-mainHub")
     public String displayRooms(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("attribute name", "Successful switch!");
         return "redirect:mainHub";
