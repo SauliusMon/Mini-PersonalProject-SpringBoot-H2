@@ -5,42 +5,122 @@
     <h1>Main hub</h1>
 </head>
 <body>
-    <h2>Add a person</h2>
-    <form action="/add-person" method="post">
-        <table>
-            <tr>
-                <td>
-                    <input type="radio" id="student" name="role" value="Student">
-                    <label for="student">Student</label><br>
-                    <input type="radio" id="teacher" name="role" value="Teacher">
-                    <label for="teacher">Teacher</label><br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="name">Name:</label> <br>
-                    <input type="text" name="name" id="name" /> <br>
-                    <label for="password">Password:</label> <br>
-                    <input type="password" name="password" id="password" /> <br>
+    <div style="display: flex">
 
-                    <label for="room">Room id:</label> <br>
-                    <select name="room" id="room">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
-                </td>
-            </tr>
-        </table>
-    </form>
-    <form action="/display-rooms" method="post" style="padding: 20px 0px">
-        <button onclick="/display-rooms" style="padding: 25px 20px; font-size: 1.5rem; font-weight: bold">Display Rooms</button>
-    </form>
+        <div style="flex: 25%">
+            <h2>Add a person:</h2>
+            <form action="/add-person" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="radio" id="student" name="role" value="Student">
+                            <label for="student">Student</label><br>
+                            <input type="radio" id="teacher" name="role" value="Teacher">
+                            <label for="teacher">Teacher</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="name">Name:</label> <br>
+                            <input type="text" name="name" id="name" /> <br>
+                            <label for="password">Password:</label> <br>
+                            <input type="password" name="password" id="password" /> <br>
+
+                            <label for="room">Room id:</label> <br>
+                            <select name="room" id="room">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Submit" />
+                            <input type="reset" value="Reset" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <form action="/display-rooms" method="post" style="padding: 20px 0px">
+                <button onclick="/display-rooms" style="padding: 25px 20px; font-size: 1.5rem; font-weight: bold">Display Rooms</button>
+            </form>
+        </div>
+
+        <div style="flex: 25%">
+            <h2>All users:</h2>
+            <form action="/get-all-persons" method="get" style="padding: 20px 0px">
+                <button onclick="/get-all-persons" style="padding: 5px 10px; font-weight: bold">Display All Users</button>
+            </form>
+            <table style="border: 1px solid black">
+                <td style="padding: 10px"> <em>ID:</em></td>
+                <td style="padding: 10px"> <em>Role:</em></td>
+                <td style="padding: 10px"><em>Name:</em></td>
+                <td style="padding: 10px"><em>Second name:</em></td>
+
+                <tr th:each="person: ${allPersons}">
+                    <td th:text="${person.Id}" style="padding: 5px 10px; font-weight: bold"/>
+                    <td th:text="${person.role}" style="padding: 5px 10px; font-weight: bold"/>
+                    <td th:text="${person.name}" style="padding: 5px 10px; font-weight: bold"/>
+                    <td th:text="${person.secondName}" style="padding: 5px 10px; font-weight: bold"/>
+                </tr>
+            </table>
+        </div>
+
+        <div style="flex: 25%">
+            <h2>Get a person:</h2>
+            <form action="/get-person-id-by-name" method="post">
+                <table style="padding-top: 20px">
+                    <tr>
+                        <td>
+                            <label for="personName" style="font-weight: bold">Get person ID by name:</label> <br>
+                            <input type="text" name="personName" id="personName" /> <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Get person"/>
+                        </td>
+                    </tr>
+                    <td style="padding: 10px"> <em>ID:</em></td>
+                    <td style="padding: 10px"> <em>Role:</em></td>
+                    <td style="padding: 10px"><em>Name:</em></td>
+                    <td style="padding: 10px"><em>Second name:</em></td>
+
+                    <tr th:each="person: ${persons}">
+                        <td th:text="${person.Id}" style="padding: 0px 10px; font-weight: bold"/>
+                        <td th:text="${person.role}" style="padding: 0px 10px; font-weight: bold"/>
+                        <td th:text="${person.name}" style="padding: 0px 10px; font-weight: bold"/>
+                        <td th:text="${person.secondName}" style="padding: 0px 10px; font-weight: bold"/>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div style="flex: 25%">
+            <h2>Delete a user:</h2>
+            <form action="/delete-user-by-id" method="post">
+                <table style="padding-top: 20px">
+                    <tr>
+                        <td>
+                            <label for="userID" style="font-weight: bold">Delete user by ID:</label> <br>
+                            <input type="text" name="userID" id="userID" /> <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Delete user"/>
+                        </td>
+                    </tr>
+                    <tr th:each="person: ${usersToDelete}">
+                        <td style="font-weight: bold"/> Deleted user:
+                        <td th:text="${person.role}" style="padding: 0px 10px; font-weight: bold"/>
+                        <td th:text="${person.name}" style="padding: 0px 10px; font-weight: bold"/>
+                        <td th:text="${person.secondName}" style="padding: 0px 10px; font-weight: bold"/>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
 </body>
