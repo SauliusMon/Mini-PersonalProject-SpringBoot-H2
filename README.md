@@ -1,4 +1,4 @@
-# Program appearance in images directory
+# Program shape in images directory
 
 ## Simple project to learn springboot.
 
