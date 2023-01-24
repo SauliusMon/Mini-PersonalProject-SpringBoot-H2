@@ -2,55 +2,43 @@ package lt.techin.from.scratch.controllers;
 
 import lt.techin.from.scratch.dao.UserRepository;
 import lt.techin.from.scratch.model.Person;
+import lt.techin.from.scratch.services.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Controller
 public class RoomsController {
 
-    private final UserRepository userRepository;
+    private final PersonService personService;
 
     public RoomsController (UserRepository userRepository) {
-        this.userRepository = userRepository;
+        this.personService = new PersonService(userRepository);
     }
-
-    private final Comparator<Person> customComparator = new Comparator<Person>() {
-        @Override
-        public int compare(Person o1, Person o2) {
-            //Swapped places for teachers to be on top
-            return o1.getRole().equals(o2.getRole()) ? 0 : o2.getRole().compareTo(o1.getRole());
-        }
-    };
 
     @GetMapping("rooms")
     public String getDefaultRoom(Model model) {
-        List<Person> room1 = userRepository.findAll().stream().filter(p -> p.getRoom() == 1).sorted(customComparator).collect(Collectors.toList());
+        List<Person> room1 = personService.usersByRoomInt(1);
         model.addAttribute("room1",room1);
 
-        List<Person> room2 = userRepository.findAll().stream().filter(p -> p.getRoom() == 2).sorted(customComparator).collect(Collectors.toList());
+        List<Person> room2 = personService.usersByRoomInt(2);
         model.addAttribute("room2", room2);
 
-        List<Person> room3 = userRepository.findAll().stream().filter(p -> p.getRoom() == 3).sorted(customComparator).collect(Collectors.toList());
+        List<Person> room3 = personService.usersByRoomInt(3);
         model.addAttribute("room3", room3);
 
-        List<Person> room4 = userRepository.findAll().stream().filter(p -> p.getRoom() == 4).sorted(customComparator).collect(Collectors.toList());
+        List<Person> room4 = personService.usersByRoomInt(4);
         model.addAttribute("room4", room4);
         return "rooms";
     }
 
     @PostMapping("/remove-user-from-room")
     public String removePersonFromRoom(@RequestParam("personId") Long personToRemoveID, RedirectAttributes redirectAttributes) {
-        Optional<Person> personToRemoveRoom = userRepository.findById(personToRemoveID);
-        if (personToRemoveRoom.isPresent()) {
-            personToRemoveRoom.get().setRoom(0);
-            userRepository.save(personToRemoveRoom.get());
-        }
+        personService.removeUserFromRoom(personToRemoveID);
         return "redirect:rooms";
     }
 
@@ -58,14 +46,7 @@ public class RoomsController {
     public String addPersonToRoom1(@RequestParam String personId) {
         try {
             Long personID = Long.parseLong(personId);
-            Optional<Person> personToAddRoomOpt = userRepository.findById(personID);
-            if (personToAddRoomOpt.isPresent()) {
-                Person personToAddRoom = personToAddRoomOpt.get();
-                if (personToAddRoom.getRoom() == 0) {
-                    personToAddRoom.setRoom(1);
-                    userRepository.save(personToAddRoom);
-                }
-            }
+            personService.addUserToRoom(personID, 1);
         } catch (Exception ignored) {}
         return "redirect:rooms";
     }
@@ -74,14 +55,7 @@ public class RoomsController {
     public String addPersonToRoom2(@RequestParam String personId) {
         try {
             Long personID = Long.parseLong(personId);
-            Optional<Person> personToAddRoomOpt = userRepository.findById(personID);
-            if (personToAddRoomOpt.isPresent()) {
-                Person personToAddRoom = personToAddRoomOpt.get();
-                if (personToAddRoom.getRoom() == 0) {
-                    personToAddRoom.setRoom(2);
-                    userRepository.save(personToAddRoom);
-                }
-            }
+            personService.addUserToRoom(personID, 2);
         } catch (Exception ignored) {}
         return "redirect:rooms";
     }
@@ -90,14 +64,7 @@ public class RoomsController {
     public String addPersonToRoom3(@RequestParam String personId) {
         try {
             Long personID = Long.parseLong(personId);
-            Optional<Person> personToAddRoomOpt = userRepository.findById(personID);
-            if (personToAddRoomOpt.isPresent()) {
-                Person personToAddRoom = personToAddRoomOpt.get();
-                if (personToAddRoom.getRoom() == 0) {
-                    personToAddRoom.setRoom(3);
-                    userRepository.save(personToAddRoom);
-                }
-            }
+            personService.addUserToRoom(personID, 3);
         } catch (Exception ignored) {}
         return "redirect:rooms";
     }
@@ -106,14 +73,7 @@ public class RoomsController {
     public String addPersonToRoom4(@RequestParam String personId) {
         try {
             Long personID = Long.parseLong(personId);
-            Optional<Person> personToAddRoomOpt = userRepository.findById(personID);
-            if (personToAddRoomOpt.isPresent()) {
-                Person personToAddRoom = personToAddRoomOpt.get();
-                if (personToAddRoom.getRoom() == 0) {
-                    personToAddRoom.setRoom(4);
-                    userRepository.save(personToAddRoom);
-                }
-            }
+            personService.addUserToRoom(personID, 4);
         } catch (Exception ignored) {}
         return "redirect:rooms";
     }
